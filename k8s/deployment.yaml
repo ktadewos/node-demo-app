@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: demo-backend-deployment
+  name: demo-deployment
 spec:
   selector:
     matchLabels:
-      app: demo-backend-deployment
+      app: demo-deployment
   replicas: 1
   template:
     metadata:
       labels:
-        app: demo-backend-deployment
+        app: demo-deployment
         track: stable
     spec:
       containers:
-        - name: demo-backend-deployment
+        - name: demo-deployment
           image: "gcr.io/ml-console-dev/demo-backend-image:latest"
           # resources:
           #   requests:
@@ -26,5 +26,5 @@ spec:
               path: /
               port: 3000
           ports:
-            - name: demo-backend-port
+            - name: demo-port
               containerPort: 3000
