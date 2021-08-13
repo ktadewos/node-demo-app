@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: demo-deployment
+  name: demo-be-dep
 spec:
   selector:
     matchLabels:
-      app: demo-deployment
+      app: demo-be-dep
   replicas: 1
   template:
     metadata:
       labels:
-        app: demo-deployment
+        app: demo-be-dep
         track: stable
     spec:
       containers:
-        - name: demo-deployment
+        - name: demo-be-dep
           image: "gcr.io/ml-console-dev/demo-backend-image:latest"
           # resources:
           #   requests:
