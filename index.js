@@ -3,7 +3,7 @@ const config = require('config');
 
 const app = require('./server');
 
-mongoose.connect(`mongodb+srv://${config.get('db_username')}:${config.get('db_password')}@cluster0.nigpm.mongodb.net/demo_db?retryWrites=true&w=majority`, { useUnifiedTopology: true, useNewUrlParser: true })
+mongoose.connect(`mongodb+srv://${config.get('db_username')}:${config.get('db_password')}@cluster0.nigpm.mongodb.net/${config.get('db_name')}?retryWrites=true&w=majority`, { useUnifiedTopology: true, useNewUrlParser: true })
     .then(() => {
         app.listen(3000, () => {
             console.log("server is running on 3000 ...");
