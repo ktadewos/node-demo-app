@@ -1,7 +1,7 @@
-const personController = require('../controller/person.controller');
-const { Person } = require('../models/person');
-const ApiResponse = require('../models/apiResponse');
-const ErrorResponse = require('../models/errorResponse');
+const personController = require('../../controller/person.controller');
+const { Person } = require('../../models/person');
+const ApiResponse = require('../../models/apiResponse');
+const ErrorResponse = require('../../models/errorResponse');
 
 
 

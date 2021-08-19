@@ -1,7 +1,7 @@
-const authenticationController = require('../controller/authentication.controller');
-const ApiResponse = require('../models/apiResponse');
-const ErrorResponse = require('../models/errorResponse');
-const { User } = require('../models/user');
+const authenticationController = require('../../controller/authentication.controller');
+const ApiResponse = require('../../models/apiResponse');
+const ErrorResponse = require('../../models/errorResponse');
+const { User } = require('../../models/user');
 const bcrypt = require('bcrypt');
 
 describe('Authentication Controller Test Cases', () => {
