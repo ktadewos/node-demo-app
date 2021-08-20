@@ -104,6 +104,7 @@ describe('Authentication Controller Test Cases', () => {
     
         expect(resMock.status).toBeCalledWith(200);
         expect(resMock.send).toBeCalledWith(apiResponse);
+        expect(user.generateAuthToken).toBeCalled();
         expect(resMock.header).toBeCalledWith('x-auth-token', generatedToken);
         expect(User.findOne).toHaveBeenCalledWith({ email: req.body.email });
      });
