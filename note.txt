@@ -1,8 +1,10 @@
-"devDependencies": {
-    "chai": "^4.3.4",
-    "jest": "^27.0.6",
-    "mocha": "^9.0.3",
-    "nodemon": "^2.0.12",
-    "sinon": "^11.1.2",
-    "supertest": "^6.1.6"
-  }
+Solving port in use issue
+-> there are two ways to solve that problem
+1. If your test use a single port then you have to run jest with flag --maxWorkers=1 or --runInBand.
+2. If you want to use paralle execution feature of jest for having a better perfomance then do the following: 
+    + create a separate server.js file which have all the detail of the server but does not listen to a specific port
+    + and give server.js to jest as a server
+    + since there is not port specified inside server.js then jest will use any random available port and can execute parallely without port collision.
+    + note that if you do this way , you don't need to close server in each test suites
+
+--> Note that jest create multiple workes for test suites unless you specify something like --maxWorkers=1.
