@@ -10,14 +10,14 @@ describe('/' , () => {
     beforeAll(async () => {
         
         server = require('../../server');
-        await User.remove({});
-        await User.collection.insertOne(
-                {
-                    email: 'email',
-                    password: '$2a$12$fSAz.XqeSbPd1C./q8nsO.xO/35LO6UkiDandD9xJgBjbh0Kd6nCe', //encrypted version of password.
-                    role: 'admin'
-                }
-        );
+        // await User.remove({});
+        // await User.collection.insertOne(
+        //         {
+        //             email: 'email',
+        //             password: '$2a$12$fSAz.XqeSbPd1C./q8nsO.xO/35LO6UkiDandD9xJgBjbh0Kd6nCe', //encrypted version of password.
+        //             role: 'admin'
+        //         }
+        // );
 
         const loggedInUser = await User.findOne({email: 'email'});
         accessToken = loggedInUser.generateAuthToken();
@@ -66,7 +66,7 @@ describe('/' , () => {
 
             expect(res.status).toBe(200);
             expect(res.body.result.length).toBe(2);
-            expect(res.body.result.some(fn => fn.email === 'Kaleab'));
+            expect(res.body.result.some(fn => fn.firstName === 'Kaleab'));
 
         })
     })

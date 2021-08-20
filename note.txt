@@ -8,3 +8,8 @@ Solving port in use issue
     + note that if you do this way , you don't need to close server in each test suites
 
 --> Note that jest create multiple workes for test suites unless you specify something like --maxWorkers=1.
+
+
+Note: 
+=====
+-> put test cases that access the same collection into same test suite. other wise they may affect each other while updating the test database.
