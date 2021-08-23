@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const personSchema = new mongoose.Schema({
     _id: {
         type: mongoose.Types.ObjectId,
-        required: true
+        required: true,
+        auto: true
     },
     firstName: {
         type: String

@@ -5,6 +5,9 @@ const authenticationController = require('../controller/authentication.controlle
 
 /* GET a user. */
 router.get('/persons', personController.findAll);
+router.post('/persons', personController.insert);
+router.put('/persons/:id', personController.updateById);
+router.delete('/persons/:id', personController.removeById);
 router.get('/me', authenticationController.getUserById);
 
 
