@@ -28,3 +28,24 @@ spec:
           ports:
             - name: demo-port
               containerPort: 3000
+          env:
+          - name: db_username
+            valueFrom:
+              secretKeyRef:
+               name: demo-secret
+               key: db_username 
+          - name: db_password
+            valueFrom:
+              secretKeyRef:
+               name: demo-secret
+               key: db_password 
+          - name: db_name
+            valueFrom:
+              secretKeyRef:
+               name: demo-secret
+               key: db_name 
+          - name: port
+            valueFrom:
+              secretKeyRef:
+                key: port
+                name: demo-secret

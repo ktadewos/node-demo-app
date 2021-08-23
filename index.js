@@ -1,3 +1,4 @@
 const app = require('./server');
+const {port} = require('./config.js')
 
-app.listen(3000, () => console.log('connected'));
+app.listen(port, () => console.log('connected'));
