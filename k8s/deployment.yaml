@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: demo-be-dep
-          image: "gcr.io/ml-console-dev/demo-backend-image:latest"
+          image: "gcr.io/ml-console-dev/demo-be-image:latest"
           # resources:
           #   requests:
           #     memory: "1000Mi"
