@@ -43,9 +43,14 @@ spec:
             valueFrom:
               secretKeyRef:
                name: demo-secret
-               key: db_name 
+               key: db_name
+          - name: test_db_name
+            valueFrom:
+              secretKeyRef:
+                name: demo-secret 
+                key: test_db_name
           - name: port
             valueFrom:
               secretKeyRef:
-                key: port
                 name: demo-secret
+                key: port
