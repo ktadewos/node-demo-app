@@ -1,8 +1,12 @@
 const mongoose = require('mongoose');
-const {db_username, db_password, db_name} = require('../config.js')
-const config = require('config');
+const {db_username, db_password, db_name, test_db_name} = require('../config.js')
 module.exports = async () => {
-    await mongoose.connect(`mongodb+srv://${config.get('db_username')}:${config.get('db_password')}@cluster0.nigpm.mongodb.net/${config.get('db_name')}?retryWrites=true&w=majority`, { useUnifiedTopology: true, useNewUrlParser: true });    
+    if(process.env.NODE_ENV == 'test'){
+        await mongoose.connect(`mongodb+srv://${db_username}:${db_password}@cluster0.nigpm.mongodb.net/${test_db_name}?retryWrites=true&w=majority`, { useUnifiedTopology: true, useNewUrlParser: true });
+    }
+    else {
+        await mongoose.connect(`mongodb+srv://${db_username}:${db_password}@cluster0.nigpm.mongodb.net/${db_name}?retryWrites=true&w=majority`, { useUnifiedTopology: true, useNewUrlParser: true });
+    }
 }
 
 
