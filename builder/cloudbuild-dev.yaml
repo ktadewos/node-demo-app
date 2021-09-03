@@ -1,5 +1,5 @@
 steps:
-#step 1: no test for frontend.
+#step 1: testing a code before making a build.
 - name: 'node'
   entrypoint: 'npm'
   args: ['install']
@@ -9,11 +9,6 @@ steps:
     '-c',
     'db_username=$_DB_NAME db_password=$_DB_PASSWORD db_name=$_DB_NAME port=$_DB_PORT test_db_name=$_TEST_DB_NAME npm test'
   ]
-# - name: 'node'
-#   entrypoint: 'npm'
-#   args: [
-#    'test'
-#   ]
 #step 2
 - name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'bash'
@@ -21,7 +16,7 @@ steps:
    '-c',
    'docker pull gcr.io/$PROJECT_ID/demo-be-dep:$BRANCH_NAME-latest || exit 0'
   ]
-#step 2
+#step 3
 - name: gcr.io/cloud-builders/docker
   args: [
    'build',
@@ -31,13 +26,13 @@ steps:
    'gcr.io/$PROJECT_ID/demo-be-dep:$BRANCH_NAME-latest',
    '.'
   ]
-#step 3
+#step 4
 - name: 'gcr.io/cloud-builders/kubectl'
   args: ['apply', '-f', 'k8s/dev/deployment.yaml']
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
   - 'CLOUDSDK_CONTAINER_CLUSTER=demo-cluster'
-  #step 4
+  #step 5
 - name: 'gcr.io/cloud-builders/kubectl'
   args: [
    'set',

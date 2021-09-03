@@ -1,14 +1,5 @@
 steps:
-#step 1: no test for frontend.
-# - name: 'node'
-#   entrypoint: 'npm'
-#   args: ['install']
-# - name: 'node'
-#   entrypoint: 'npm'
-#   args: [
-#    'test'
-#   ]
-#step 2
+#step 1
 - name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'bash'
   args: [
