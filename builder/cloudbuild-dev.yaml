@@ -3,10 +3,10 @@ steps:
 - name: 'node'
   entrypoint: 'npm'
   args: ['install']
-- name: 'gcr.io/cloud-builders/gcloud'
+- name: 'node'
   entrypoint: 'bash'
   args: [
-    '-c',    
+    '-c',
     'db_username=ktadewos db_password=0932355548 db_name=demo_db port=3000 test_db_name=demo_db_test npm test'
   ]
 # - name: 'node'
@@ -15,44 +15,44 @@ steps:
 #    'test'
 #   ]
 #step 2
-- name: 'gcr.io/cloud-builders/docker'
-  entrypoint: 'bash'
-  args: [
-   '-c',
-   'docker pull gcr.io/$PROJECT_ID/demo-be-dep:$BRANCH_NAME-latest || exit 0'
-  ]
-#step 2
-- name: gcr.io/cloud-builders/docker
-  args: [
-   'build',
-   '-t',
-   'gcr.io/$PROJECT_ID/demo-be-dep:$BRANCH_NAME-$COMMIT_SHA',
-   '-t',
-   'gcr.io/$PROJECT_ID/demo-be-dep:$BRANCH_NAME-latest',
-   '.'
-  ]
-#step 3
-- name: 'gcr.io/cloud-builders/kubectl'
-  args: ['apply', '-f', 'k8s/dev/deployment.yaml']
-  env:
-  - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=demo-cluster'
-  #step 4
-- name: 'gcr.io/cloud-builders/kubectl'
-  args: [
-   'set',
-   'image',
-   'deployment',
-   'demo-be-dep-dev',
-   'demo-be-dep-dev=gcr.io/$PROJECT_ID/demo-be-dep:$BRANCH_NAME-$COMMIT_SHA',
-    '--namespace',
-    'demo-dev-ns'
-  ]
-  env:
-  - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=demo-cluster'
-# push images to Google Container Registry with tags
-images: [
-   'gcr.io/$PROJECT_ID/demo-be-dep:$BRANCH_NAME-$COMMIT_SHA',
-   'gcr.io/$PROJECT_ID/demo-be-dep:$BRANCH_NAME-latest'
-  ]
+# - name: 'gcr.io/cloud-builders/docker'
+#   entrypoint: 'bash'
+#   args: [
+#    '-c',
+#    'docker pull gcr.io/$PROJECT_ID/demo-be-dep:$BRANCH_NAME-latest || exit 0'
+#   ]
+# #step 2
+# - name: gcr.io/cloud-builders/docker
+#   args: [
+#    'build',
+#    '-t',
+#    'gcr.io/$PROJECT_ID/demo-be-dep:$BRANCH_NAME-$COMMIT_SHA',
+#    '-t',
+#    'gcr.io/$PROJECT_ID/demo-be-dep:$BRANCH_NAME-latest',
+#    '.'
+#   ]
+# #step 3
+# - name: 'gcr.io/cloud-builders/kubectl'
+#   args: ['apply', '-f', 'k8s/dev/deployment.yaml']
+#   env:
+#   - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
+#   - 'CLOUDSDK_CONTAINER_CLUSTER=demo-cluster'
+#   #step 4
+# - name: 'gcr.io/cloud-builders/kubectl'
+#   args: [
+#    'set',
+#    'image',
+#    'deployment',
+#    'demo-be-dep-dev',
+#    'demo-be-dep-dev=gcr.io/$PROJECT_ID/demo-be-dep:$BRANCH_NAME-$COMMIT_SHA',
+#     '--namespace',
+#     'demo-dev-ns'
+#   ]
+#   env:
+#   - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
+#   - 'CLOUDSDK_CONTAINER_CLUSTER=demo-cluster'
+# # push images to Google Container Registry with tags
+# images: [
+#    'gcr.io/$PROJECT_ID/demo-be-dep:$BRANCH_NAME-$COMMIT_SHA',
+#    'gcr.io/$PROJECT_ID/demo-be-dep:$BRANCH_NAME-latest'
+#   ]
