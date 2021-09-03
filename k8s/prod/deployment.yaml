@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: demo-be-dep-dev
-  namespace: demo-dev-ns
+  name: demo-be-dep-prod
+  namespace: demo-prod-ns
 spec:
   selector:
     matchLabels:
-      app: demo-be-dep-dev
+      app: demo-be-dep-prod
   replicas: 1
   template:
     metadata:
       labels:
-        app: demo-be-dep-dev
+        app: demo-be-dep-prod
         track: stable
     spec:
       containers:
-        - name: demo-be-dep-dev
+        - name: demo-be-dep-prod
           image: "gcr.io/ml-console-dev/demo-be-dep:develop-latest"
           # resources:
           #   requests:
@@ -27,7 +27,7 @@ spec:
               path: /
               port: 3000
           ports:
-            - name: be-port-dev
+            - name: be-port-prod
               containerPort: 3000
           env:
           - name: db_username
