@@ -1,8 +1,13 @@
 steps:
 #step 1: no test for frontend.
-# - name: 'node'
-#   entrypoint: 'npm'
-#   args: ['install']
+- name: 'node'
+  entrypoint: 'npm'
+  args: ['install']
+- name: 'node'
+  entrypoint: 'bash'
+  args: [
+    'db_username=ktadewos db_password=0932355548 db_name=demo_db port=3000 test_db_name=demo_db_test npm test'
+  ]
 # - name: 'node'
 #   entrypoint: 'npm'
 #   args: [
