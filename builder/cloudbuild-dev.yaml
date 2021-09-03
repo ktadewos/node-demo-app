@@ -7,7 +7,7 @@ steps:
   entrypoint: 'bash'
   args: [
     '-c',
-    'db_username=ktadewos db_password=0932355548 db_name=demo_db port=3000 test_db_name=demo_db_test npm test'
+    'db_username=$_DB_NAME db_password=$_DB_PASSWORD db_name=$_DB_NAME port=$_DB_PORT test_db_name=$_TEST_DB_NAME npm test'
   ]
 # - name: 'node'
 #   entrypoint: 'npm'
