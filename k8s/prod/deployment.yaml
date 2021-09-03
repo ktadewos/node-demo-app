@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-be-dep-dev
+  namespace: demo-dev-ns
+spec:
+  selector:
+    matchLabels:
+      app: demo-be-dep-dev
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: demo-be-dep-dev
+        track: stable
+    spec:
+      containers:
+        - name: demo-be-dep-dev
+          image: "gcr.io/ml-console-dev/demo-be-dep:develop-latest"
+          # resources:
+          #   requests:
+          #     memory: "1000Mi"
+          #     cpu: "150m"
+          imagePullPolicy: Always
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 3000
+          ports:
+            - name: be-port-dev
+              containerPort: 3000
+          env:
+          - name: db_username
+            valueFrom:
+              secretKeyRef:
+               name: demo-secret
+               key: db_username 
+          - name: db_password
+            valueFrom:
+              secretKeyRef:
+               name: demo-secret
+               key: db_password 
+          - name: db_name
+            valueFrom:
+              secretKeyRef:
+               name: demo-secret
+               key: db_name
+          - name: test_db_name
+            valueFrom:
+              secretKeyRef:
+                name: demo-secret 
+                key: test_db_name
+          - name: port
+            valueFrom:
+              secretKeyRef:
+                name: demo-secret
+                key: port
