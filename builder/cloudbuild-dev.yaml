@@ -7,7 +7,7 @@ steps:
   entrypoint: 'bash'
   args: [
     '-c',
-    'db_username=${_DB_NAME} db_password=${_DB_PASSWORD} db_name=${_DB_NAME} port=${_DB_PORT} test_db_name=${_TEST_DB_NAME} npm test'
+    'db_username=${_DB_USERNAME} db_password=${_DB_PASSWORD} db_name=${_DB_NAME} port=${_DB_PORT} test_db_name=${_TEST_DB_NAME} npm test'
   ]
 #step 2
 - name: 'gcr.io/cloud-builders/docker'
