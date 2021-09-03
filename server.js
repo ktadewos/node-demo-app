@@ -21,7 +21,7 @@ app.use('/api', [auth, adminRole], personRoutes);
 app.use('/api', [auth, adminRole], petRoutes);
 
 app.get('/', (req, res, next) => {
-    res.send('Hello from Node Application');
+    res.send('Hello from Node Application dev change');
 });
 
 app.use((err, req, res, next) => {
